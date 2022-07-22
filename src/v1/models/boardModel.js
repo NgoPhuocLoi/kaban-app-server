@@ -1,0 +1,40 @@
+const mongoose = require('mongoose');
+const { schemaOptions } = require('./modelOptions');
+
+const boardSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'users',
+      required: true,
+    },
+    icon: {
+      type: String,
+      default: '📃',
+    },
+    title: {
+      type: String,
+      default: 'Untitled',
+    },
+    description: {
+      type: String,
+      default: `Add description here
+    🟢 You can add multiline description
+    🟢 Lets start...`,
+    },
+    position: {
+      type: Number,
+    },
+    favourite: {
+      type: Boolean,
+      default: false,
+    },
+    favouritePosition: {
+      type: Number,
+      default: 0,
+    },
+  },
+  schemaOptions,
+);
+
+module.exports = mongoose.model('boards', boardSchema);

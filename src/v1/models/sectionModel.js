@@ -1,0 +1,20 @@
+const mongoose = require('mongoose');
+const { schemaOptions } = require('./modelOptions');
+
+const sectionSchema = new mongoose.Schema(
+  {
+    board: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'boards',
+      required: true,
+    },
+
+    title: {
+      type: String,
+      default: ``,
+    },
+  },
+  schemaOptions,
+);
+
+module.exports = mongoose.model('sections', sectionSchema);
